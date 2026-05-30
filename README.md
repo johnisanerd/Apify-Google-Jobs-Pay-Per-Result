@@ -1,18 +1,22 @@
-# 💼 Google Jobs Pay-Per-Result Scraper: Scrape Google Jobs Listings with Python
+# 💼 Google Jobs API (Pay Per Result): Job Listings in Clean JSON
 
-> **The most efficient, reliable, and developer-friendly Google Jobs scraper - pay only for results returned**
+> Pay only for the results you get. The developer-friendly way to use the Google Jobs API.
 
 **Actor page:** [apify.com/johnvc/google-jobs-scraper---pay-per-result](https://apify.com/johnvc/google-jobs-scraper---pay-per-result?fpr=9n7kx3)
 **Input schema:** [apify.com/johnvc/google-jobs-scraper---pay-per-result/input-schema](https://apify.com/johnvc/google-jobs-scraper---pay-per-result/input-schema?fpr=9n7kx3)
 
-Scrape Google Jobs listings with Python using the [Google Jobs Pay-Per-Result scraper on Apify](https://apify.com/johnvc/google-jobs-scraper---pay-per-result?fpr=9n7kx3). Returns structured JSON with job titles, companies, locations, descriptions, and apply links - with pay-per-result pricing so you are only charged for the job listings actually returned.
+This edition of the Google Jobs API bills per result returned, so your cost scales directly with the number of listings you keep. It searches Google Jobs and returns clean, structured JSON, one record per listing. Each job includes title, company, location, source platform, the full description, parsed metadata (posting date, schedule type, benefits), and direct apply links across platforms (LinkedIn, Indeed, company site, and more). Built-in company and source filters let you drop unwanted results before you pay for them. Supports location targeting, location-radius search, country and language filtering, and pagination.
 
-> Also available: [pay-per-event variant](https://apify.com/johnvc/Google-Jobs-Scraper?fpr=9n7kx3) - better suited for high-volume runs where you expect consistent result counts.
+> Prefer per-page pricing instead of per-result? See the [pay-per-page edition](https://apify.com/johnvc/Google-Jobs-Scraper?fpr=9n7kx3).
 
-## 🚀 Quick Start
+## Video Walkthrough
+
+[![Watch the walkthrough](https://img.youtube.com/vi/jREWahDGhJM/maxresdefault.jpg)](https://www.youtube.com/watch?v=jREWahDGhJM)
+
+## Quick Start
 
 ### Prerequisites
-- Python 3.9 or higher
+- Python 3.11 or higher
 - An Apify account and API key ([get a free key here](https://apify.com?fpr=9n7kx3))
 
 1. **Clone the repository**
@@ -23,7 +27,7 @@ Scrape Google Jobs listings with Python using the [Google Jobs Pay-Per-Result sc
 
 2. **Install dependencies with UV**
    ```bash
-   # Install UV if you don't have it:
+   # Install UV if you do not have it:
    curl -LsSf https://astral.sh/uv/install.sh | sh
 
    # Install project dependencies:
@@ -42,152 +46,255 @@ Scrape Google Jobs listings with Python using the [Google Jobs Pay-Per-Result sc
    uv run python google-jobs-pay-per-result-scraper.py
    ```
 
-### Alternative: Set API Key Directly
+### Alternative: set the API key directly
 ```bash
 export APIFY_API_TOKEN="your_api_key_here"
 uv run python google-jobs-pay-per-result-scraper.py
 ```
 
-## 🌟 Why Use This Google Jobs Pay-Per-Result Scraper?
+## Why Use This Google Jobs API?
 
-The [Google Jobs Pay-Per-Result scraper on Apify](https://apify.com/johnvc/google-jobs-scraper---pay-per-result?fpr=9n7kx3) delivers structured job listing data from Google Jobs - the aggregated job index that pulls postings from LinkedIn, Indeed, Glassdoor, company career pages, and thousands of other sources into a single searchable surface.
+**Pay only for results.** Billing is per result returned, with no subscription. You decide how many listings to keep, and that is exactly what you pay for.
 
-**Only Pay for What You Get**: With pay-per-result pricing, your cost is tied directly to the number of job listings returned. If a query yields 50 results, you pay for 50 results - no per-page overhead, no charges for empty pages. This makes the scraper especially cost-effective for targeted searches where result counts vary.
+**Filter before you pay.** Built-in company and job-source filters (with optional regex matching) let you exclude staffing agencies, aggregators, or specific employers, so you are not charged for results you do not want.
 
-**Broad Job Market Coverage**: Google Jobs aggregates listings from across the web - company career sites, major job boards, and niche industry postings all appear together. A single query surfaces opportunities that would otherwise require searching multiple platforms individually.
+**One record per job, fully detailed.** Every listing comes with title, company, location, source, the full description, and parsed metadata, so you can load it straight into an ATS, a dashboard, or an analysis pipeline.
 
-**Location and Language Precision**: Filter results by `location`, `country`, and `language` to target specific labor markets. Whether you need software engineering roles in Austin, finance jobs in London, or marketing positions in Germany, the input parameters let you scope results precisely without post-filtering.
+**Direct apply links.** Each job includes apply options across platforms (LinkedIn, Indeed, the company careers site, and more) with direct URLs.
 
-**Company and Source Filtering**: Use `company_filter` or `company_filter_list` to restrict results to specific employers, with optional regex support for flexible matching. The `via_filter` parameter restricts results by job board source - useful when you only want results from specific platforms.
+**Targeted search.** Filter by location, country, language, and Google domain, and use location-radius search to focus on a specific area.
 
-**Configurable Result Volume**: Set `num_results` to control how many listings to collect per run, and `max_pagination` to limit page depth. This makes it straightforward to run quick spot checks or large-scale market surveys from the same configuration.
+**Easy to automate.** Call it from Python in a few lines, or load it as an MCP tool so assistants like Claude and Cursor can search jobs for you on demand.
 
-**Production-Ready for Talent Intelligence**: Job listing data powers recruiting pipelines, labor market research, compensation benchmarking, and competitive talent analysis. The [Google Jobs scraper](https://apify.com/johnvc/google-jobs-scraper---pay-per-result?fpr=9n7kx3) returns clean, consistently structured JSON ready to load directly into any of these workflows.
-
-## 🎯 Common Use Cases for Google Jobs Data
-
-**Recruiting and Talent Sourcing**: Monitor job openings at target companies or in specific roles to inform recruiting strategy and identify active hiring signals.
-
-**Labor Market Research**: Track job posting volumes, required skills, and compensation ranges across industries, roles, and geographies over time.
-
-**Compensation Benchmarking**: Collect salary data from job descriptions to benchmark roles against market rates across regions and company sizes.
-
-**Competitive Intelligence**: Monitor competitor hiring activity to identify product priorities, team expansions, and strategic shifts before they become public.
-
-**Job Board and Aggregator Development**: Source structured job listing data to populate a niche job board, career resource, or skills gap analysis tool.
-
-**Academic Research**: Build datasets of job postings for labor economics, skills demand analysis, or workforce development research.
-
-## ⚡ Features
+## Features
 
 ### Core Capabilities
-- **Google Jobs Index**: Queries Google's aggregated job listing index across all major sources
-- **Pay-Per-Result Pricing**: Charged only for job listings actually returned, not pages processed
-- **Location Targeting**: Filter by `location`, `country`, and `language` for precise market scoping
-- **Company Filtering**: Restrict results to specific employers with string, list, or regex matching
-- **Source Filtering**: Limit results to specific job boards or platforms with `via_filter`
-- **Configurable Volume**: Control result count with `num_results` and depth with `max_pagination`
+- **Job search** with location, country, language, and Google-domain targeting
+- **Location-radius search** to focus results on a specific area
+- **Company filters** to exclude specific employers (single value, list, or regex)
+- **Job-source filters** to exclude specific platforms such as aggregators
+- **Pagination control** with a configurable page cap
+- **Direct apply links** across multiple platforms per job
 
 ### Data Quality
-- **Consistent JSON Schema**: Every job listing shares the same field structure regardless of source
-- **Full Job Details**: Title, company, location, description, and apply link on every result
-- **Source Attribution**: Which platform or site each listing was sourced from
-- **Location Radius Support**: Optional `lrad_value` for distance-based location filtering
-- **Request Throttling**: Configurable `max_delay` to manage request pacing
+- **One record per job** with a stable structure
+- **Full description text** plus parsed metadata (posting date, schedule type, benefits)
+- **Apply options** with platform names and direct URLs
+- **Search metadata** echoed on every record
+- **Consistent JSON** shape across every query
 
-## 📖 Usage Examples
+## Usage Examples
 
-### Basic Search: Scrape Google Jobs for Any Role
+### Basic search
+```json
+{
+  "query": "Software Engineer",
+  "location": "Austin, TX",
+  "num_results": 10
+}
+```
 
+### Exclude job sources and a company, with localization
 ```json
 {
   "query": "Data Scientist",
-  "num_results": 50
+  "location": "Berlin, Germany",
+  "country": "de",
+  "language": "de",
+  "num_results": 20,
+  "via_filter_list": ["ZipRecruiter"],
+  "company_filter": "Staffing Agency A"
 }
 ```
 
-### Advanced Search: Location-Targeted with Company Filter
-
-Retrieve Software Engineer roles in Austin, TX filtered to specific companies, with 2 pages of results.
-
-```json
-{
-  "query": "Software Engineer",
-  "location": "Austin, TX",
-  "country": "us",
-  "language": "en",
-  "num_results": 100,
-  "max_pagination": 2,
-  "company_filter_list": ["Google", "Meta", "Apple"]
-}
-```
-
-## 🔍 Input Parameters
-
-Full input schema reference: [apify.com/johnvc/google-jobs-scraper---pay-per-result/input-schema](https://apify.com/johnvc/google-jobs-scraper---pay-per-result/input-schema?fpr=9n7kx3)
+## Input Parameters
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `query` | `str` | YES | - | Job search query |
-| `location` | `str` | no | - | Job location (e.g. `"Austin, TX"`) |
-| `country` | `str` | no | - | Country code (e.g. `"us"`) |
-| `language` | `str` | no | - | Language code (e.g. `"en"`) |
-| `google_domain` | `str` | no | `"google.com"` | Google domain to use |
-| `num_results` | `int` | no | `100` | Number of results to return |
-| `max_pagination` | `int` | no | `0` | Max pages (0 = no limit) |
-| `include_lrad` | `bool` | no | `false` | Include location radius filter |
-| `lrad_value` | `str` | no | - | Location radius value |
-| `max_delay` | `int` | no | `1` | Request delay in seconds |
-| `company_filter` | `str` | no | - | Filter by company name |
-| `company_filter_list` | `array` | no | - | Filter by list of company names |
-| `company_filter_regex` | `bool` | no | `false` | Use regex for company filter |
-| `via_filter` | `str` | no | - | Filter by job source platform |
-| `via_filter_list` | `array` | no | - | Filter by list of job source platforms |
+| `query` | `string` | Yes | - | Job search query, e.g. `Software Engineer`, `Data Scientist`. |
+| `location` | `string` | No | - | Job location (city level recommended), e.g. `Austin, TX`. Leave empty for a worldwide search. |
+| `country` | `string` | No | `None` | Country code (ISO 3166-1 alpha-2), e.g. `us`, `de`. |
+| `language` | `string` | No | `None` | Language code for results, e.g. `en`. |
+| `google_domain` | `string` | No | `google.com` | Google domain to search. |
+| `num_results` | `integer` | No | `100` | Maximum number of job results to return. Minimum accepted is `10`. Each returned result is billed. |
+| `max_pagination` | `integer` | No | `0` | Maximum pages to fetch (~10 results each); `0` = unlimited. |
+| `include_lrad` | `boolean` | No | `false` | Enable location-radius filtering. |
+| `lrad_value` | `string` | No | `5` | Radius in miles when `include_lrad` is true. |
+| `max_delay` | `integer` | No | `1` | Delay in seconds between requests, to avoid rate limiting. |
+| `company_filter` | `string` | No | - | Exclude jobs from specific companies; single name or comma-separated list. |
+| `company_filter_list` | `array` | No | - | Exclude companies as a list; takes precedence over `company_filter`. |
+| `company_filter_regex` | `boolean` | No | `false` | Treat company filters as regex patterns for flexible matching. |
+| `via_filter` | `string` | No | - | Exclude jobs from specific sources/platforms; single name or comma-separated list. |
+| `via_filter_list` | `array` | No | - | Exclude sources as a list; takes precedence over `via_filter`. |
+| `output_file` | `string` | No | - | Optional filename to save results. |
 
-## 📊 Output Format
+## Output Format
 
-Each run returns a dataset of structured JSON objects. Sample output:
+A real result for `Software Engineer` in Austin, TX (one item per job; the full `description`, `extensions`, and `detected_extensions` are present but omitted here for readability, and `job_id` is truncated).
 
 ```json
 {
-  "query": "Software Engineer",
+  "title": "Senior Software Engineer",
+  "company_name": "Southwest Airlines",
   "location": "Austin, TX",
-  "country": "us",
-  "num_results": 50,
-  "results_returned": 50,
-  "jobs": [
+  "via": "Southwest Careers - Southwest Airlines",
+  "apply_options": [
     {
-      "position": 1,
-      "title": "Senior Software Engineer, Backend",
-      "company": "Cloudflare",
-      "location": "Austin, TX",
-      "via": "LinkedIn",
-      "description": "We are looking for a Senior Software Engineer to join our backend infrastructure team. You will design and build distributed systems that handle millions of requests per second...",
-      "apply_link": "https://www.linkedin.com/jobs/view/example",
-      "posted_at": "3 days ago",
-      "employment_type": "Full-time",
-      "salary": "$160,000 - $200,000 a year"
-    },
-    {
-      "position": 2,
-      "title": "Software Engineer II",
-      "company": "Dell Technologies",
-      "location": "Austin, TX (Hybrid)",
-      "via": "Indeed",
-      "description": "Join our engineering team building next-generation storage solutions. Experience with distributed systems and Go or C++ required...",
-      "apply_link": "https://www.indeed.com/viewjob?jk=example",
-      "posted_at": "1 week ago",
-      "employment_type": "Full-time",
-      "salary": null
+      "title": "Southwest Careers - Southwest Airlines",
+      "link": "https://careers.southwestair.com/us/en/job/R-2026-68331/Senior-Software-Engineer"
     }
-  ]
+  ],
+  "job_id": "eyJqb2JfdGl0bGUiOiJTZW5pb3IgU29mdHdhcmUgRW5naW5lZXIiLCJjb21wYW55X25hbWUiOi...",
+  "query": "Software Engineer",
+  "country": "us",
+  "language": "en",
+  "google_domain": "google.com",
+  "search_timestamp": "2026-05-29T11:21:31",
+  "total_jobs_found": 10,
+  "pages_processed": 1
 }
 ```
 
+Each job record also includes the full `description` text, an `extensions` array of raw tags (for example `Full-time`), a `detected_extensions` object with parsed fields like posting date and schedule type, plus `share_link`, `source_link`, and `job_title`.
+
 ---
 
-[**Made with love**](https://apify.com/johnvc?fpr=9n7kx3)
+## Use as an MCP tool
 
-*Transform your data collection with the most reliable and efficient scraper on the market.*
+You can load the Google Jobs API as an MCP tool so assistants call it for you. The MCP server URL preloads just this one Actor:
 
-Last Updated: 2026.05.29
+```
+https://mcp.apify.com/?tools=actors,docs,johnvc/google-jobs-scraper---pay-per-result
+```
+
+Authenticate with OAuth in the browser when offered, or with your Apify API token (the same `APIFY_API_TOKEN` used by the Python example). Get a token at https://console.apify.com/settings/integrations and a free Apify account at https://apify.com?fpr=9n7kx3 .
+
+## Install in Claude Cowork Desktop
+
+![Install in Claude Cowork Desktop](https://raw.githubusercontent.com/johnisanerd/ApifyPublicData/main/assets/guides/install_mcp_into_claude_desktop.png)
+
+Cowork is the desktop app's automation mode. To give it the Google Jobs API as a tool, add the Apify MCP server as a connector.
+
+1. Open the Claude desktop app and go to **Settings → Connectors** (or **Settings → Developer → Edit Config** to edit `claude_desktop_config.json` directly).
+   - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+2. Add the Apify MCP server, preloaded with only this Actor:
+
+```json
+{
+  "mcpServers": {
+    "apify": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.apify.com/?tools=actors,docs,johnvc/google-jobs-scraper---pay-per-result"
+      ]
+    }
+  }
+}
+```
+
+3. Restart the app. When Cowork first calls the tool, complete the OAuth prompt in your browser, or add your Apify API token in the connector settings to skip OAuth.
+4. In a Cowork chat, confirm the tool is available and ask it to run the Google Jobs API.
+
+Download the desktop app and start a free trial: https://claude.ai/referral/uIlpa7nPLg
+More help: https://docs.apify.com/platform/integrations/claude-desktop
+
+## Install in Claude Code
+
+![Install in Claude Code](https://raw.githubusercontent.com/johnisanerd/ApifyPublicData/main/assets/guides/install_mcp_into_claude_code.png)
+
+Claude Code is the command-line tool. Add the Actor's MCP server with one command:
+
+```bash
+claude mcp add --transport http apify \
+  "https://mcp.apify.com/?tools=actors,docs,johnvc/google-jobs-scraper---pay-per-result"
+```
+
+To use a token instead of browser OAuth:
+
+```bash
+claude mcp add --transport http apify \
+  "https://mcp.apify.com/?tools=actors,docs,johnvc/google-jobs-scraper---pay-per-result" \
+  --header "Authorization: Bearer YOUR_APIFY_TOKEN"
+```
+
+Then verify with `claude mcp list`, or run `/mcp` inside a session. Ask Claude Code to call the Google Jobs API.
+
+Try Claude Code free: https://claude.ai/referral/uIlpa7nPLg
+Claude Code MCP docs: https://code.claude.com/docs/en/mcp
+
+## Install in Claude (website)
+
+![Install in Claude (website)](https://raw.githubusercontent.com/johnisanerd/ApifyPublicData/main/assets/guides/install_mcp_into_claude_ai.png)
+
+On claude.ai you add Apify as a connector, then enable just this Actor's tool.
+
+1. Go to **Settings → Connectors → Browse connectors** and search for **Apify MCP server**. Install it (enable or update if prompted).
+2. When connecting, authenticate with your Apify API token, and enable the tool `johnvc/google-jobs-scraper---pay-per-result`.
+3. In any chat, open **+ → Connectors** and turn on **Apify**.
+4. Alternatively, choose **Add custom connector** and paste the full MCP URL `https://mcp.apify.com/?tools=actors,docs,johnvc/google-jobs-scraper---pay-per-result`, using OAuth when prompted.
+5. Ask Claude to run the Google Jobs API.
+
+Open Claude on the web: https://claude.ai
+
+## Install in Cursor
+
+![Install in Cursor](https://raw.githubusercontent.com/johnisanerd/ApifyPublicData/main/assets/guides/install_mcp_into_cursor.png)
+
+Cursor reads MCP servers from a project file at `.cursor/mcp.json`.
+
+1. In your project, create `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "apify": {
+      "url": "https://mcp.apify.com/?tools=actors,docs,johnvc/google-jobs-scraper---pay-per-result"
+    }
+  }
+}
+```
+
+2. If you prefer token auth over browser OAuth, add a header:
+
+```json
+{
+  "mcpServers": {
+    "apify": {
+      "url": "https://mcp.apify.com/?tools=actors,docs,johnvc/google-jobs-scraper---pay-per-result",
+      "headers": { "Authorization": "Bearer YOUR_APIFY_TOKEN" }
+    }
+  }
+}
+```
+
+3. Open **Cursor → Settings → MCP** and confirm the **apify** server is connected (green dot).
+4. In Composer or Chat, ask Cursor to call the Google Jobs API.
+
+New to Cursor? Get it here: https://cursor.com/referral?code=XQP4VBLI3NNX
+
+## Install in ChatGPT
+
+![Install in ChatGPT](https://raw.githubusercontent.com/johnisanerd/ApifyPublicData/main/assets/guides/install_mcp_into_ChatGPT.png)
+
+ChatGPT connects to the Apify MCP server through Developer mode (available on ChatGPT Pro, Plus, Business, Enterprise, and Education plans).
+
+1. Click your profile icon, then go to **Settings > Apps**. If you do not see a **Create app** button, open **Advanced settings** and enable **Developer mode**.
+2. Click **Create app** and fill out the form:
+   - **Name:** Apify
+   - **MCP Server URL:** `https://mcp.apify.com/?tools=actors,docs,johnvc/google-jobs-scraper---pay-per-result`
+   - **Authentication:** OAuth
+3. Click **Create** and authorize the connection with Apify.
+4. To use the app in a conversation, click **+** in the chat, choose **Developer mode**, and select **Apify**.
+
+More help: https://docs.apify.com/platform/integrations/mcp
+
+---
+
+[**Made with care**](https://apify.com/johnvc?fpr=9n7kx3)
+
+*Use the Google Jobs API to power recruiting tools, market research, and analytics with reliable, structured results.*
+
+Last Updated: 2026.05.30
