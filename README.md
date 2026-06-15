@@ -297,4 +297,10 @@ More help: https://docs.apify.com/platform/integrations/mcp
 
 *Use the Google Jobs API to power recruiting tools, market research, and analytics with reliable, structured results.*
 
+## Featured Tasks
+
+Ready-to-run examples on the Apify Store.
+
+- [Export Google Jobs Listings to CSV](https://apify.com/johnvc/google-jobs-scraper---pay-per-result/examples/export-google-jobs-listings-to-csv?fpr=9n7kx3)
+
 Last Updated: 2026.06.15
