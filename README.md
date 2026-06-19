@@ -303,4 +303,4 @@ Ready-to-run examples on the Apify Store.
 
 - [Export Google Jobs Listings to CSV](https://apify.com/johnvc/google-jobs-scraper---pay-per-result/examples/export-google-jobs-listings-to-csv?fpr=9n7kx3)
 
-Last Updated: 2026.06.18
+Last Updated: 2026.06.19
